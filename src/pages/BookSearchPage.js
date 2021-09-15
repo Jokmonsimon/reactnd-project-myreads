@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import * as BooksAPI from '../BooksAPI';
 import BookShelf from '../myreads_components/BookShelf';
-import {useHistory} from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-const BookSearchPage = (props) => {   
+
+const BookSearchPage = (props) => {  
+  const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [bookSearchResults, setBookSearchResults] = useState([]);
-  const [hasError, setHasError] = useState(false);
+  // const [hasError, setHasError] = useState(false);
   const onInputChange = (e) => {
   	setSearchTerm(e.target.value);
     
@@ -20,9 +22,8 @@ const BookSearchPage = (props) => {
     }) 
   }, [searchTerm]);
   
-  	const [books, setBooks] = useState([]);
-    const updateBookShelf = (book, newBookShelf) => {
-      const updatedBooks = books.map(b => {
+  const updateBookShelf = (book, newBookShelf) => {
+  const updatedBooks = books.map(b => {
         if (b.id === book.id) {
           book.shelf = newBookShelf;
           const bookOnShelf = updatedBooks.find(b => b.id ===book.id)
@@ -36,17 +37,13 @@ const BookSearchPage = (props) => {
       setBooks(updatedBooks)
       BooksAPI.update(book, newBookShelf).then(data => (data))
     }
-
-  let history = useHistory();
-  const redirect = () => {
-    history.push('/')
-  }
   
   return (
     <div className="app">
       <div className="serach-books">
         <div className="search-books-bar">
-            <button className="close-search" onClick={redirect}>Redirect</button>
+           
+			<Link to="/"><button className="close-search" >Close</button></Link>
           <div className="search-books-input-wrapper">
             <input type="text" placeholder="Search by title or author" onChange={onInputChange} />
           </div>
