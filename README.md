@@ -20,7 +20,7 @@ After my first project was rejected because of plargarism, I clone the project s
 3. I restructured the static code into reusable components as presented below. 
 
 ## How I Planned and Refactored MyReads App for the `Third Re-submission`
-![alt tag](public/MyReads.jpg)
+![MyReads](https://user-images.githubusercontent.com/65468830/133355376-06288d69-f6b6-48df-8df1-30af8ab2aa53.jpg)
 
 ## State Management
 1. The first thing I did was to modified App.js file in order to be able to change book from one shelf to another.
